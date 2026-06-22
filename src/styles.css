@@ -25,17 +25,23 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+img,
+svg {
+  max-width: 100%;
 }
 
 button,
@@ -45,6 +51,7 @@ a {
 
 .site-shell {
   min-height: 100vh;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 14% 12%, rgba(223, 233, 226, 0.9), transparent 30rem),
     linear-gradient(180deg, #faf8f2 0%, #f7f4ee 48%, #fbfaf6 100%);
@@ -54,6 +61,7 @@ a {
 .content-section,
 .footer {
   width: min(1160px, calc(100% - 2rem));
+  max-width: 100%;
   margin-inline: auto;
 }
 
@@ -66,6 +74,7 @@ a {
   justify-content: space-between;
   gap: 1rem;
   width: min(1160px, calc(100% - 2rem));
+  max-width: 100%;
   margin: 0 auto;
   padding: 0.85rem 0;
   backdrop-filter: blur(18px);
@@ -75,6 +84,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
 }
 
 .brand-mark {
@@ -93,6 +103,7 @@ a {
 .brand small {
   display: block;
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .brand strong {
@@ -129,6 +140,8 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
+  max-width: 100%;
+  min-width: 0;
   min-height: 2.9rem;
   border-radius: 999px;
   font-weight: 760;
@@ -188,6 +201,7 @@ a {
 
 .hero-copy {
   max-width: 560px;
+  min-width: 0;
 }
 
 .eyebrow {
@@ -216,6 +230,11 @@ h1 {
   font-size: clamp(3rem, 5.4vw, 5.15rem);
   line-height: 0.96;
   letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+h1 span {
+  display: block;
 }
 
 h2 {
@@ -246,6 +265,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  min-width: 0;
 }
 
 .trust-row {
@@ -267,6 +287,7 @@ h3 {
   background: rgba(255, 253, 248, 0.68);
   font-size: 0.88rem;
   font-weight: 700;
+  min-width: 0;
 }
 
 .portrait-panel {
@@ -277,6 +298,7 @@ h3 {
   border-radius: 8px;
   background: #dfd4ca;
   box-shadow: 0 22px 54px rgba(38, 63, 55, 0.18);
+  max-width: 100%;
 }
 
 .portrait-panel img {
@@ -359,6 +381,7 @@ h3 {
     transform 180ms ease,
     box-shadow 180ms ease,
     border-color 180ms ease;
+  min-width: 0;
 }
 
 .service-card,
@@ -524,15 +547,22 @@ h3 {
     border-color 180ms ease,
     background 180ms ease,
     box-shadow 180ms ease;
+  min-width: 0;
 }
 
 .contact-card svg {
   flex: 0 0 auto;
 }
 
+.contact-card span {
+  min-width: 0;
+}
+
 .contact-card small,
 .contact-card strong {
   display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .contact-card small {
@@ -621,13 +651,23 @@ h3 {
 
   .hero {
     min-height: auto;
+    gap: 1.2rem;
+  }
+
+  .hero-copy {
+    max-width: 100%;
   }
 
   .portrait-panel {
+    order: -1;
     min-height: 0;
-    aspect-ratio: 4 / 5;
-    width: min(100%, 28rem);
+    aspect-ratio: 5 / 6;
+    width: min(100%, 24rem);
     justify-self: center;
+  }
+
+  .portrait-panel img {
+    object-position: center 28%;
   }
 
   .services-grid,
@@ -674,16 +714,63 @@ h3 {
   .section-band,
   .content-section,
   .footer {
-    width: min(100% - 1rem, 1160px);
+    width: min(100% - 0.85rem, 1160px);
   }
 
   .hero {
-    padding: 0.85rem;
+    gap: 1rem;
+    padding: 0.7rem;
+    box-shadow: 0 16px 46px rgba(38, 63, 55, 0.1);
   }
 
   h1 {
-    max-width: 9ch;
-    font-size: clamp(3.1rem, 16vw, 4.6rem);
+    max-width: 100%;
+    margin-bottom: 0.75rem;
+    font-size: clamp(2.1rem, 9.4vw, 3rem);
+    line-height: 1.04;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 9vw, 2.45rem);
+  }
+
+  h3 {
+    font-size: 1.08rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.65rem;
+    font-size: 0.72rem;
+  }
+
+  .hero-copy p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .portrait-panel {
+    width: min(100%, 19.5rem);
+    aspect-ratio: 4 / 5;
+  }
+
+  .portrait-panel img {
+    object-position: center 24%;
+  }
+
+  .portrait-caption {
+    right: 0.55rem;
+    bottom: 0.55rem;
+    left: 0.55rem;
+    padding: 0.7rem;
+  }
+
+  .portrait-caption strong {
+    font-size: 0.88rem;
+  }
+
+  .portrait-caption span {
+    font-size: 0.78rem;
   }
 
   .hero-actions .primary-button,
@@ -692,27 +779,100 @@ h3 {
     width: 100%;
   }
 
+  .primary-button,
+  .secondary-button {
+    flex-wrap: wrap;
+    min-height: 2.75rem;
+    padding-inline: 0.95rem;
+    font-size: 0.93rem;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
   .trust-row span {
     width: 100%;
+    min-height: 2.25rem;
+    font-size: 0.84rem;
+  }
+
+  .statement {
+    padding-top: 2rem;
   }
 
   .statement p {
     text-align: left;
+    font-size: clamp(1.18rem, 6vw, 1.55rem);
+    line-height: 1.32;
   }
 
-  .portrait-caption {
-    right: 0.75rem;
-    bottom: 0.75rem;
-    left: 0.75rem;
+  .content-section {
+    padding-top: 3rem;
+  }
+
+  .section-heading {
+    margin-bottom: 1.1rem;
+  }
+
+  .service-card,
+  .format-card,
+  .faq-item {
+    padding: 1rem;
+  }
+
+  .format-card {
+    min-height: auto;
+  }
+
+  .format-card strong {
+    font-size: 1.32rem;
   }
 
   .approach,
   .contact-section {
-    padding: 1.2rem;
+    padding: 1rem;
+  }
+
+  .principle-item {
+    padding: 0.8rem;
+    font-size: 0.94rem;
+  }
+
+  .contact-card {
+    min-height: 3.85rem;
+    padding: 0.82rem 0.9rem;
+    overflow: hidden;
+  }
+
+  .contact-card strong {
+    font-size: 0.95rem;
   }
 
   .footer {
     flex-direction: column;
     padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    padding: 0.6rem;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 9vw, 2.35rem);
+  }
+
+  .portrait-panel {
+    width: min(100%, 17.5rem);
+  }
+
+  .primary-button,
+  .secondary-button,
+  .contact-card {
+    font-size: 0.88rem;
+  }
+
+  .contact-card strong {
+    font-size: 0.88rem;
   }
 }
