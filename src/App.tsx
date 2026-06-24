@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -11,6 +12,7 @@ import {
   Sparkles,
   Waves,
 } from "lucide-react";
+import { initAnalytics, reachGoal } from "./analytics";
 
 const telegramHandle = "@da_badumtss";
 const telegramLink = "https://t.me/da_badumtss";
@@ -80,6 +82,10 @@ const faqs = [
 ];
 
 export function App() {
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
   return (
     <div className="site-shell">
       <header className="topbar" aria-label="Основная навигация">
@@ -96,7 +102,13 @@ export function App() {
           <a href="#formats">Форматы</a>
           <a href="#contacts">Контакты</a>
         </nav>
-        <a className="nav-action" href={telegramLink} target="_blank" rel="noreferrer">
+        <a
+          className="nav-action"
+          href={telegramLink}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => reachGoal("contact_telegram", { place: "header" })}
+        >
           <Send size={18} />
           Telegram
         </a>
@@ -117,11 +129,17 @@ export function App() {
               Массажист и нутрициолог. Помогает вернуть телу легкость, снизить напряжение и выстроить спокойную заботу о себе.
             </p>
             <div className="hero-actions">
-              <a className="primary-button" href={telegramLink} target="_blank" rel="noreferrer">
+              <a
+                className="primary-button"
+                href={telegramLink}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => reachGoal("contact_telegram", { place: "hero" })}
+              >
                 <Send size={18} />
                 {telegramHandle}
               </a>
-              <a className="secondary-button" href={phoneLink}>
+              <a className="secondary-button" href={phoneLink} onClick={() => reachGoal("contact_phone", { place: "hero" })}>
                 <Phone size={18} />
                 {phoneNumber}
               </a>
@@ -201,7 +219,12 @@ export function App() {
                 <h3>{format.title}</h3>
                 <strong>{format.price}</strong>
                 <p>{format.text}</p>
-                <a href={telegramLink} target="_blank" rel="noreferrer">
+                <a
+                  href={telegramLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => reachGoal("format_details", { format: format.title })}
+                >
                   Обсудить формат
                   <ArrowRight size={17} />
                 </a>
@@ -232,21 +255,33 @@ export function App() {
             <p>Напишите в удобный мессенджер или позвоните. В сообщении можно коротко описать запрос и желаемый формат.</p>
           </div>
           <div className="contact-actions reveal">
-            <a className="contact-card telegram-card" href={telegramLink} target="_blank" rel="noreferrer">
+            <a
+              className="contact-card telegram-card"
+              href={telegramLink}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => reachGoal("contact_telegram", { place: "contacts" })}
+            >
               <Send size={22} />
               <span>
                 <small>Telegram</small>
                 <strong>{telegramHandle}</strong>
               </span>
             </a>
-            <a className="contact-card phone-card" href={phoneLink}>
+            <a className="contact-card phone-card" href={phoneLink} onClick={() => reachGoal("contact_phone", { place: "contacts" })}>
               <Phone size={22} />
               <span>
                 <small>Телефон</small>
                 <strong>{phoneNumber}</strong>
               </span>
             </a>
-            <a className="contact-card max-card" href={maxLink} target="_blank" rel="noreferrer">
+            <a
+              className="contact-card max-card"
+              href={maxLink}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => reachGoal("contact_max", { place: "contacts" })}
+            >
               <Send size={22} />
               <span>
                 <small>MAX</small>
@@ -259,7 +294,14 @@ export function App() {
 
       <footer className="footer">
         <span>© 2026 Андроненкова Дарья</span>
-        <a href={telegramLink} target="_blank" rel="noreferrer">Telegram {telegramHandle}</a>
+        <a
+          href={telegramLink}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => reachGoal("contact_telegram", { place: "footer" })}
+        >
+          Telegram {telegramHandle}
+        </a>
       </footer>
     </div>
   );
