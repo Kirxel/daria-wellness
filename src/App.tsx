@@ -154,12 +154,6 @@ export function App() {
           </div>
         </section>
 
-        <section className="statement section-band">
-          <p>
-            Сайт-визитка Дарьи: коротко о практике, форматах работы и способах связи. Без лишнего шума, с фокусом на доверие и понятный первый контакт.
-          </p>
-        </section>
-
         <section className="content-section" id="services">
           <div className="section-heading reveal">
             <span className="eyebrow">услуги</span>

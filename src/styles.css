@@ -839,6 +839,10 @@ h3 {
     gap: 1.2rem;
   }
 
+  .hero::before {
+    border: none;
+  }
+
   .hero-copy {
     max-width: 100%;
   }
