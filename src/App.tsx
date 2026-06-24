@@ -14,7 +14,7 @@ import {
 
 const telegramHandle = "@da_badumtss";
 const telegramLink = "https://t.me/da_badumtss";
-const maxLink = "#contacts";
+const maxLink = "https://web.max.ru/97179858";
 const phoneNumber = "+7 996 509-18-84";
 const phoneLink = `tel:${phoneNumber.replace(/\D/g, "")}`;
 
@@ -143,7 +143,10 @@ export function App() {
           </div>
 
           <div className="portrait-panel reveal">
-            <img src="/daria-portrait.png" alt="Портрет Дарьи Андроненковой" />
+            <picture>
+              <source srcSet="/daria-portrait-mobile.png" media="(max-width: 640px)" />
+              <img src="/daria-portrait.png" alt="Портрет Дарьи Андроненковой" />
+            </picture>
             <div className="portrait-caption">
               <strong>Массаж · восстановление · питание</strong>
               <span>мягкий подход к телу и привычкам</span>
@@ -249,11 +252,11 @@ export function App() {
                 <strong>{phoneNumber}</strong>
               </span>
             </a>
-            <a className="contact-card max-card" href={maxLink}>
+            <a className="contact-card max-card" href={maxLink} target="_blank" rel="noreferrer">
               <Send size={22} />
               <span>
                 <small>MAX</small>
-                <strong>Укажите ссылку или ник</strong>
+                <strong>Андроненкова Дарья</strong>
               </span>
             </a>
           </div>
