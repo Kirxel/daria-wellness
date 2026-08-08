@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import {
   ArrowRight,
+  CalendarCheck2,
   CheckCircle2,
+  ClipboardList,
   Clock3,
   HeartPulse,
   Leaf,
@@ -15,7 +17,8 @@ import {
 import { initAnalytics, reachGoal } from "./analytics";
 
 const telegramHandle = "@da_badumtss";
-const telegramLink = "https://t.me/da_badumtss";
+const telegramMessage = "Здравствуйте! Хочу записаться / уточнить подходящий формат.";
+const telegramLink = `https://t.me/da_badumtss?text=${encodeURIComponent(telegramMessage)}`;
 const maxLink = "https://web.max.ru/97179858";
 const phoneNumber = "+7 996 509-18-84";
 const phoneLink = `tel:${phoneNumber.replace(/\D/g, "")}`;
@@ -24,13 +27,13 @@ const services = [
   {
     icon: Waves,
     title: "Массаж тела",
-    text: "Работа с напряжением, усталостью, мышечными зажимами и ощущением тяжести в теле.",
+    text: "Общий массаж всего тела для расслабления, отдыха и ощущения легкости.",
     meta: "60-120 минут",
   },
   {
     icon: HeartPulse,
-    title: "Восстановление",
-    text: "Бережные сеансы для спины, шеи, плеч и общего расслабления после нагрузки.",
+    title: "Работа с отдельной зоной",
+    text: "Прицельная работа со спиной, шеей, плечами или другой зоной, которая требует особого внимания.",
     meta: "индивидуально",
   },
   {
@@ -51,18 +54,33 @@ const principles = [
 const formats = [
   {
     title: "Первичная встреча",
-    price: "от 2 000 ₽",
     text: "Знакомство, разбор запроса и мягкая работа с основной зоной напряжения.",
   },
   {
     title: "Полный массаж",
-    price: "от 4 000 ₽",
     text: "Комплексная работа с телом для расслабления, легкости и восстановления.",
   },
   {
     title: "Тело + питание",
-    price: "от 5 000 ₽",
     text: "Массаж и нутрициологическая консультация для более комплексной поддержки.",
+  },
+];
+
+const firstVisitSteps = [
+  {
+    icon: Send,
+    title: "Напишите в Telegram",
+    text: "Коротко расскажите, что беспокоит и какой формат вам удобен.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Уточним детали",
+    text: "Дарья задаст несколько вопросов о самочувствии, запросе и ограничениях.",
+  },
+  {
+    icon: CalendarCheck2,
+    title: "Выберем время",
+    text: "Согласуете подходящий день, время и формат первой встречи.",
   },
 ];
 
@@ -78,6 +96,10 @@ const faqs = [
   {
     question: "Как проходит консультация по питанию?",
     answer: "Дарья разбирает текущий рацион, режим, жалобы и цель, а затем предлагает реалистичные рекомендации без жестких ограничений.",
+  },
+  {
+    question: "Нужно ли брать с собой результаты обследований?",
+    answer: "Желательно взять с собой имеющиеся результаты обследований — МРТ, КТ и другие заключения. Они помогут Дарье лучше понять ваше состояние и учесть возможные ограничения.",
   },
 ];
 
@@ -137,7 +159,7 @@ export function App() {
                 onClick={() => reachGoal("contact_telegram", { place: "hero" })}
               >
                 <Send size={18} />
-                {telegramHandle}
+                Записаться
               </a>
               <a className="secondary-button" href={phoneLink} onClick={() => reachGoal("contact_phone", { place: "hero" })}>
                 <Phone size={18} />
@@ -217,7 +239,6 @@ export function App() {
             {formats.map((format) => (
               <article className="format-card reveal" key={format.title}>
                 <h3>{format.title}</h3>
-                <strong>{format.price}</strong>
                 <p>{format.text}</p>
                 <a
                   href={telegramLink}
@@ -228,6 +249,24 @@ export function App() {
                   Обсудить формат
                   <ArrowRight size={17} />
                 </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="content-section first-visit-section">
+          <div className="section-heading reveal">
+            <span className="eyebrow">первая встреча</span>
+            <h2>Как всё проходит</h2>
+            <p>Без сложной записи и обязательств: начните с короткого сообщения.</p>
+          </div>
+          <div className="first-visit-grid">
+            {firstVisitSteps.map((step, index) => (
+              <article className="first-visit-card reveal" key={step.title}>
+                <span className="step-number">0{index + 1}</span>
+                <step.icon className="card-icon" size={28} />
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
               </article>
             ))}
           </div>
@@ -303,6 +342,17 @@ export function App() {
           Telegram {telegramHandle}
         </a>
       </footer>
+
+      <a
+        className="mobile-booking-bar"
+        href={telegramLink}
+        target="_blank"
+        rel="noreferrer"
+        onClick={() => reachGoal("contact_telegram", { place: "mobile_fixed" })}
+      >
+        <Send size={19} />
+        Записаться в Telegram
+      </a>
     </div>
   );
 }

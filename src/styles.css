@@ -484,7 +484,8 @@ h3 {
 }
 
 .services-grid,
-.format-grid {
+.format-grid,
+.first-visit-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
@@ -492,6 +493,7 @@ h3 {
 
 .service-card,
 .format-card,
+.first-visit-card,
 .faq-item {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -505,12 +507,14 @@ h3 {
 }
 
 .service-card,
-.format-card {
+.format-card,
+.first-visit-card {
   padding: 1.25rem;
 }
 
 .service-card:hover,
-.format-card:hover {
+.format-card:hover,
+.first-visit-card:hover {
   border-color: rgba(93, 126, 112, 0.28);
   box-shadow: 0 22px 54px rgba(38, 63, 55, 0.12);
 }
@@ -649,6 +653,42 @@ h3 {
   gap: 0.7rem;
 }
 
+.first-visit-section {
+  padding-top: clamp(3.25rem, 8vw, 5.8rem);
+}
+
+.first-visit-section .section-heading p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.first-visit-card {
+  position: relative;
+  min-height: 14.5rem;
+  overflow: hidden;
+}
+
+.first-visit-card .card-icon {
+  margin-bottom: 0.85rem;
+}
+
+.first-visit-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.step-number {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: rgba(93, 126, 112, 0.22);
+  font-size: 2.1rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
 .faq-section {
   padding-bottom: clamp(3.25rem, 8vw, 5.8rem);
 }
@@ -775,6 +815,10 @@ h3 {
   font-size: 0.94rem;
 }
 
+.mobile-booking-bar {
+  display: none;
+}
+
 .reveal {
   animation: revealUp 620ms ease both;
 }
@@ -861,7 +905,8 @@ h3 {
   }
 
   .services-grid,
-  .format-grid {
+  .format-grid,
+  .first-visit-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1015,11 +1060,16 @@ h3 {
 
   .service-card,
   .format-card,
+  .first-visit-card,
   .faq-item {
     padding: 1rem;
   }
 
   .format-card {
+    min-height: auto;
+  }
+
+  .first-visit-card {
     min-height: auto;
   }
 
@@ -1049,7 +1099,27 @@ h3 {
 
   .footer {
     flex-direction: column;
-    padding-bottom: 2rem;
+    padding-bottom: calc(6.8rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-booking-bar {
+    position: fixed;
+    right: 0.55rem;
+    bottom: max(0.55rem, env(safe-area-inset-bottom));
+    left: 0.55rem;
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.45rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    box-shadow: 0 16px 34px rgba(38, 63, 55, 0.28);
+    font-weight: 850;
   }
 }
 
